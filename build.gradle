@@ -54,6 +54,7 @@ plugins {
   id 'elasticsearch.internal-flakiness-resolve'
   id 'com.gradleup.nmcp.aggregation'
   id 'elasticsearch.dra-maven-aggregation'
+  id 'org.sonarqube' version '7.5.0.8588'
 }
 
 version = VersionProperties.elasticsearch
@@ -665,4 +666,13 @@ tasks.register("spotlessApply").configure {
   dependsOn gradle.includedBuild('build-tools').task(':spotlessApply')
   dependsOn gradle.includedBuild('build-tools').task(':reaper:spotlessApply')
   dependsOn gradle.includedBuild('build-tools-internal').task(':spotlessApply')
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "WIIIIIIF_elasticsearch"
+    property "sonar.organization", "wiiiiiif"
+    property "sonar.scanner.sonarcloudUrl", "https://dev13.sc-dev13.io"
+    property "sonar.scanner.apiBaseUrl", "https://api.sc-dev13.io"
+  }
 }
